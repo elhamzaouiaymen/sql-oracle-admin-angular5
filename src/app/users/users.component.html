@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    <button class="btn btn-md btn-success" (click)="openModal(template)">Nouveau utilisateur</button>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Users</h4>                     
+            </div>
+            <div class="content table-responsive table-full-width">
+            
+              <table datatable class="table table-striped" *ngIf="dataLoaded">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let cell of usersData.headerRow">{{ cell }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of usersData.dataRows">
+                        <th *ngFor="let cell of row;">{{cell.USERNAME}}</th>
+                        <th *ngFor="let cell of row;">{{cell.USER_ID}}</th>
+                        <th *ngFor="let cell of row;">{{cell.PASSWORD}}</th>
+                        <th *ngFor="let cell of row;">{{cell.ACCOUNT_STATUS}}</th> 
+                        <th *ngFor="let cell of row;">{{cell.CREATED}}</th> 
+                        <th *ngFor="let cell of row;">{{cell.EXPIRY_DATE}}</th> 
+                        <th *ngFor="let cell of row;">{{cell.PROFILE}}</th>                               
+                        </tr>                                
+                    </tbody>    
+                </table>    
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</div>
+
+
+<ng-template #template>
+<div class="modal-header">
+<h4 class="modal-title pull-left">Modal</h4>
+<button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Create User</h4>
+                </div>
+                <div class="content">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nom de l'utilisateur</label>
+                                    <input [ngModelOptions]="{standalone: true}" [(ngModel)]="user.name" type="text" class="form-control border-input"  placeholder="Entrez le nom du profile.">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Mot de passe</label>
+                                    <input [ngModelOptions]="{standalone: true}" [(ngModel)]="user.password" class="form-control border-input" type="password" placeholder="Nombre de session">
+                                </div>
+                            </div>
+                        </div> 
+                    </form>
+                    <div class="text-center">
+                        <button class="btn btn-md btn-success" (click)="createUser();modalRef.hide()" >Créer</button>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</ng-template>
+
+
+
+

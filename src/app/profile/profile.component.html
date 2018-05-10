@@ -1,0 +1,102 @@
+    <div class="container-fluid">
+            <button class="btn btn-md btn-success" (click)="openModal(template)">Nouveau profile</button>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Profiles</h4>                     
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                    
+                      <table datatable class="table table-striped" *ngIf="dataLoaded">
+                            <thead>
+                                <tr>
+                                    <th *ngFor="let cell of profilesData.headerRow">{{ cell }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let row of profilesData.dataRows">
+                                <th *ngFor="let cell of row;">{{cell.PROFILE}}</th>
+                                <th *ngFor="let cell of row;">{{cell.RESOURCE_NAME}}</th>
+                                <th *ngFor="let cell of row;">{{cell.RESOURCE_TYPE}}</th>
+                                <th *ngFor="let cell of row;">{{cell.LIMIT}}</th>                               
+                                </tr>                                
+                            </tbody>    
+                        </table>    
+                    </div>
+                </div>
+            </div>
+    
+    
+        </div>
+    </div>
+
+ 
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+        <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Create Profile</h4>
+                        </div>
+                        <div class="content">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Nom du profile</label>
+                                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="profile.name" type="text" class="form-control border-input"  placeholder="Entrez le nom du profile.">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Nombre sessions</label>
+                                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="profile.sessions" type="text" class="form-control border-input" placeholder="Nombre de session">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>cpu_per_session</label>
+                                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="profile.cpus" type="text" class="form-control border-input" placeholder="Nombre de CPU par utilisateur">
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>idle_time</label>
+                                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="profile.idle" type="text" class="form-control border-input" placeholder="IDLE TIME">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Temps limite de session </label>
+                                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="profile.elapsedtime" type="text" class="form-control border-input" placeholder="Limite de session">
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="text-center">
+                                    
+                                </div>
+                                <div class="clearfix"></div>
+                            </form>
+                            <button class="btn btn-md btn-warning" (click)="createProfile()" >Créer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  </div>
+</ng-template>
+  
+      
+
+      

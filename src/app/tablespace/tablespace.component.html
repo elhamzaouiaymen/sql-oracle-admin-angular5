@@ -1,0 +1,88 @@
+<div class="container-fluid">
+        <button class="btn btn-md btn-success" (click)="openModal(template)">Créer tablespace</button>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Tablespaces</h4>                     
+                </div>
+                <div class="content table-responsive table-full-width">
+                
+                  <table datatable class="table table-striped" *ngIf="dataLoaded">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let cell of tablespaceData.headerRow">{{ cell }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of tablespaceData.dataRows">
+                            <th *ngFor="let cell of row;">{{cell.TABLESPACE}}</th>
+                            <th *ngFor="let cell of row;">{{cell.INITIAL_EXT}}</th>
+                            <th *ngFor="let cell of row;">{{cell.NEXT_EXT}}</th>
+                            <th *ngFor="let cell of row;">{{cell.MIN_EXT}}</th> 
+                            <th *ngFor="let cell of row;">{{cell.MAX_EXT}}</th> 
+                            <th *ngFor="let cell of row;">{{cell.PCT_INCREASE}}</th>                                
+                            </tr>                                
+                        </tbody>    
+                    </table>    
+                </div>
+            </div>
+        </div>
+    
+    
+    </div>
+    </div>
+    
+    
+    <ng-template #template>
+    <div class="modal-header">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+    <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Create tablespace</h4>
+                    </div>
+                    <div class="content">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Nom de tablespace</label>
+                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="tablespace.TABLESPACE" type="text" class="form-control border-input"  placeholder="Entrez le nom de tablespace.">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Datafile</label>
+                                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="tablespace.datafile" class="form-control border-input" type="file" (change)="fileEvent($event)" placeholder="Entrez le chemin de datafile">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Taille</label>
+                                            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="tablespace.size" class="form-control border-input" type="text" placeholder="Entrez la taille">
+                                        </div>
+                                    </div>
+                            </div> 
+                        </form>
+                        <div class="text-center">
+                            <button class="btn btn-md btn-success" (click)="createTablespace();modalRef.hide()" >Créer</button>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </ng-template>
+    
+    
+    
+    
+    
